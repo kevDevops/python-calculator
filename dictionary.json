@@ -1,0 +1,34 @@
+import json
+import difflib
+
+# Load dictionary data from JSON file into a Python dictionary
+def load_dictionary(file_path):
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+    return data
+
+# Function to get the definition of a word
+def get_definition(word, dictionary):
+    word = word.lower()  # Convert to lowercase for case-insensitive search
+    if word in dictionary:
+        return dictionary[word]
+    else:
+        similar_words = difflib.get_close_matches(word, dictionary.keys())
+        if similar_words:
+            suggestion = similar_words[0]
+            return f"Word not found. Did you mean '{suggestion}'?"
+        else:
+            return "Word not found."
+
+# Main function
+def main():
+    dictionary = load_dictionary("dictionary.json")
+    while True:
+        word = input("Enter a word to get its definition: ")
+        if word.lower() == 'exit':
+            break
+        definition = get_definition(word, dictionary)
+        print(definition)
+
+if __name__ == "__main__":
+    main()
