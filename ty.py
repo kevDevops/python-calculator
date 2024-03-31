@@ -5,7 +5,7 @@ def is_eligible_for_discount(age, has_membership):
   else:
     return False  # Not Eligible
   #prompt user for age 
-  customer_age = int(input("tafadhali weka miaka yako"))
+  customer_age = int(input("tafadhali weka miaka yako na uweke ukweli"))
 
 
 # Example usage
